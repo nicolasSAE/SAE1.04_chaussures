@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS commande (
 );
 
 CREATE TABLE IF NOT EXISTS ligne_commande (
-    id_ligne_commande INT AUTO_INCREMENT
     ,id_commande INT
     ,id_chaussure INT
     ,prix_unit NUMERIC(6,2)
