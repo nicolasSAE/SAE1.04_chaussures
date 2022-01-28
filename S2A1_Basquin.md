@@ -4,6 +4,6 @@ groupe numéro : S2A1
 * étudiant 2 : Ba Sidi
 * étudiant 3 : Chhean Sokchy
 
-URL du projet github : https://github.com/nicolasSAE/SAE1.04_chaussures
+URL du projet github : https://github.com/nicolasSAE/SAE2.04_chaussures
 
 URL du site pythonanywhere : http://sae104chaussures.pythonanywhere.com/
