@@ -26,22 +26,61 @@ SELECT * FROM user;
 
 CREATE TABLE IF NOT EXISTS chaussure (
     id_chaussure INT AUTO_INCREMENT
-    ,nomModele VARCHAR(50)
+    ,libelle_chaussure VARCHAR(25)
+    ,type_chaussure VARCHAR(25)
     ,pointure NUMERIC(3,1)
-    ,type VARCHAR(20)
-    ,fournisseur VARCHAR(50)
-    ,marque VARCHAR(50)
-    ,couleur VARCHAR(20)
+    ,fournisseur VARCHAR(25)
+    ,marque VARCHAR(25)
+    ,couleur VARCHAR(25)
     ,prix NUMERIC(6,2)
     ,PRIMARY KEY (id_chaussure)
 );
 
-INSERT INTO chaussure(id_chaussure,nomModele ,pointure, type,fournisseur ,marque ,couleur, prix) VALUES
-(NULL,'AirMax' ,42,'sport','fournisseurA','Nike' , 'noir', 99);
-INSERT INTO chaussure(id_chaussure,nomModele , pointure, type,fournisseur ,marque, couleur, prix) VALUE
-(NULL,'Stan Smith' , 39,'ville','fournisseurB' ,'Adidas' , 'bleu', 130);
-INSERT INTO chaussure(id_chaussure,nomModele , pointure, type,fournisseur ,marque,  couleur, prix) VALUE
-(NULL,'RS max' , 46,'sneaker', 'fournisseurB','Puma' ,'beige' ,  180);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de marche','DURAMO',40,'astreyee','adidas','noir',40),
+('chaussures de marche','DURAMO',38,'astreyee','adidas','noir',40),
+('chaussures de marche','DURAMO',45,'astreyee','adidas','noir',40);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de marche','HW 100',45,'stockX','Kalenji','rouge',60),
+('chaussures de marche','HW 100',44,'stockX','Kalenji','rouge',60);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de marche','TRAIL RUNNING',42.5,'astreyee','ASICS','blanc',35),
+('chaussures de marche','TRAIL RUNNING',44.5,'astreyee','ASICS','blanc',35),
+('chaussures de marche','TRAIL RUNNING',43,'astreyee','ASICS','blanc',35);
+
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de ville','Derbies Remake',41,'stockX','AZZARO','marron',100),
+('chaussures de ville','Derbies Remake',42,'stockX','AZZARO','marron',100),
+('chaussures de ville','Derbies Remake',38,'stockX','AZZARO','marron',100),
+('chaussures de ville','Derbies Remake',44,'stockX','AZZARO','marron',100);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de ville','Derbies cuir',37,'astreyee','SANTONI','noir',250),
+('chaussures de ville','Derbies cuir',38,'astreyee','SANTONI','noir',250),
+('chaussures de ville','Derbies cuir',41,'astreyee','SANTONI','noir',250);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de ville','Derbies cuir',39,'astreyee','SCHMOOVE','marron',60),
+('chaussures de ville','Derbies cuir',42,'astreyee','SCHMOOVE','marron',60);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('chaussures de ville','Derbies cuir Eki',39,'astreyee','CAMPERLAB','rouge',55),
+('chaussures de ville','Derbies cuir Eki',40,'astreyee','CAMPERLAB','rouge',55),
+('chaussures de ville','Derbies cuir Eki',42,'astreyee','CAMPERLAB','rouge',55);
+
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('baskets','Air Max 90',42,'astreyee','NIKE','noir',120),
+('baskets','Air Max 90',43,'astreyee','NIKE','noir',120);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('baskets','Air Huarache',42,'astreyee','NIKE','noir',130),
+('baskets','Air Huarache',41,'astreyee','NIKE','noir',130),
+('baskets','Air Huarache',38,'astreyee','NIKE','noir',130);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('baskets','Jordan 11 Retro Coll 2021 GS',38,'astreyee','JORDAN','gris',260),
+('baskets','Jordan 11 Retro Coll 2021 GS',40,'astreyee','JORDAN','gris',260),
+('baskets','Jordan 11 Retro Coll 2021 GS',43,'astreyee','JORDAN','gris',260);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
+('baskets','Jordan 1 Retro High Bred',39,'astreyee','JORDAN','rouge',510),
+('baskets','Jordan 1 Retro High Bred',40,'astreyee','JORDAN','rouge',510),
+('baskets','Jordan 1 Retro High Bred',41,'astreyee','JORDAN','rouge',510),
+('baskets','Jordan 1 Retro High Bred',42,'astreyee','JORDAN','rouge',510);
 
 SELECT * FROM chaussure;
 
