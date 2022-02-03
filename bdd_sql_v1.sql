@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS commande (
     ,id_user INT
     ,id_etat INT
     ,PRIMARY KEY (id_commande)
-    ,CONSTRAINT fk_commande_user FOREIGN KEY (id_user) REFERENCES user (id_user)
+    ,CONSTRAINT fk_commande_user FOREIGN KEY (id_user) REFERENCES user (id)
     ,CONSTRAINT fk_commande_etat FOREIGN KEY (id_etat) REFERENCES etat (id_etat)
 );
 
@@ -119,6 +119,6 @@ CREATE TABLE IF NOT EXISTS panier (
     ,prix_unit NUMERIC(6,2)
     ,quantite INT
     ,PRIMARY KEY (id_panier)
-    ,CONSTRAINT fk_commande_user1 FOREIGN KEY (id_user) REFERENCES user (id_user)
+    ,CONSTRAINT fk_commande_user1 FOREIGN KEY (id_user) REFERENCES user (id)
     ,CONSTRAINT fk_commande_chaussure1 FOREIGN KEY (id_chaussure) REFERENCES chaussure (id_chaussure)
 );
