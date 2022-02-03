@@ -6,21 +6,21 @@ DROP TABLE IF EXISTS chaussure;
 DROP TABLE IF EXISTS user;
 
 CREATE TABLE IF NOT EXISTS user (
-    id INT AUTO_INCREMENT
+    id_user INT AUTO_INCREMENT
     ,username VARCHAR(25)
     ,password VARCHAR(100)
     ,role VARCHAR(25)
-    ,est_actif VARCHAR(20)
+    ,est_actif VARCHAR(25)
     ,pseudo VARCHAR(25)
-    ,email VARCHAR(50)
+    ,email VARCHAR(25)
     ,PRIMARY KEY (id_user)
 );
 
-INSERT INTO user (id, email, username, password, role,  est_actif) VALUES
+INSERT INTO user (id_user, email, username, password, role,  est_actif) VALUES
 (NULL, 'admin@admin.fr', 'admin', 'sha256$pBGlZy6UukyHBFDH$2f089c1d26f2741b68c9218a68bfe2e25dbb069c27868a027dad03bcb3d7f69a', 'ROLE_admin', 1);
-INSERT INTO user  (id, email, username, password, role, est_actif) VALUES
+INSERT INTO user  (id_user, email, username, password, role, est_actif) VALUES
 (NULL, 'client@client.fr', 'client', 'sha256$Q1HFT4TKRqnMhlTj$cf3c84ea646430c98d4877769c7c5d2cce1edd10c7eccd2c1f9d6114b74b81c4', 'ROLE_client', 1);
-INSERT INTO user  (id, email, username, password, role,  est_actif) VALUES
+INSERT INTO user  (id_user, email, username, password, role,  est_actif) VALUES
 (NULL, 'client2@client2.fr', 'client2', 'sha256$ayiON3nJITfetaS8$0e039802d6fac2222e264f5a1e2b94b347501d040d71cfa4264cad6067cf5cf3', 'ROLE_client',1);
 
 CREATE TABLE IF NOT EXISTS chaussure (
@@ -34,6 +34,48 @@ CREATE TABLE IF NOT EXISTS chaussure (
     ,prix NUMERIC(6,2)
     ,PRIMARY KEY (id_chaussure)
 );
+
+CREATE TABLE IF NOT EXISTS etat (
+    id_etat INT AUTO_INCREMENT
+    ,libelle VARCHAR(25)
+    ,PRIMARY KEY (id_etat)
+);
+
+CREATE TABLE IF NOT EXISTS commande (
+    id_commande INT AUTO_INCREMENT
+    ,date_achat DATE
+    ,id_user INT
+    ,id_etat INT
+    ,PRIMARY KEY (id_commande)
+    ,CONSTRAINT fk_commande_user FOREIGN KEY (id_user) REFERENCES user (id_user)
+    ,CONSTRAINT fk_commande_etat FOREIGN KEY (id_etat) REFERENCES etat (id_etat)
+);
+
+CREATE TABLE IF NOT EXISTS ligne_commande (
+    id_ligne_commande INT AUTO_INCREMENT
+    ,id_commande INT
+    ,id_chaussure INT
+    ,prix_unit NUMERIC(6,2)
+    ,quantite INT
+    ,PRIMARY KEY (id_ligne_commande)
+    ,CONSTRAINT fk_commande_commande FOREIGN KEY (id_commande) REFERENCES commande (id_commande)
+    ,CONSTRAINT fk_commande_chaussure FOREIGN KEY (id_chaussure) REFERENCES chaussure (id_chaussure)
+);
+
+CREATE TABLE IF NOT EXISTS panier (
+    id_panier INT AUTO_INCREMENT
+    ,date_ajout DATE
+    ,id_user INT
+    ,id_chaussure INT
+    ,prix_unit NUMERIC(6,2)
+    ,quantite INT
+    ,PRIMARY KEY (id_panier)
+    ,CONSTRAINT fk_commande_user2 FOREIGN KEY (id_user) REFERENCES user (id_user)
+    ,CONSTRAINT fk_commande_chaussure2 FOREIGN KEY (id_chaussure) REFERENCES chaussure (id_chaussure)
+);
+
+SELECT * FROM user;
+Describe chaussure;
 
 INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
 ('chaussures de marche','DURAMO',40,'astreyee','adidas','noir',40),
@@ -82,43 +124,3 @@ INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,mar
 ('baskets','Jordan 1 Retro High Bred',42,'astreyee','JORDAN','rouge',510);
 
 SELECT * FROM chaussure;
-
-
-CREATE TABLE IF NOT EXISTS etat (
-    id_etat INT AUTO_INCREMENT
-    ,libelle VARCHAR(25)
-    ,PRIMARY KEY (id_etat)
-);
-
-CREATE TABLE IF NOT EXISTS commande (
-    id_commande INT AUTO_INCREMENT
-    ,date_achat DATE
-    ,id_user INT
-    ,id_etat INT
-    ,PRIMARY KEY (id_commande)
-    ,CONSTRAINT fk_commande_user FOREIGN KEY (id_user) REFERENCES user (id)
-    ,CONSTRAINT fk_commande_etat FOREIGN KEY (id_etat) REFERENCES etat (id_etat)
-);
-
-CREATE TABLE IF NOT EXISTS ligne_commande (
-    id_ligne_commande INT AUTO_INCREMENT
-    ,id_commande INT
-    ,id_chaussure INT
-    ,prix_unit NUMERIC(6,2)
-    ,quantite INT
-    ,PRIMARY KEY (id_ligne_commande)
-    ,CONSTRAINT fk_commande_commande FOREIGN KEY (id_commande) REFERENCES commande (id_commande)
-    ,CONSTRAINT fk_commande_chaussure FOREIGN KEY (id_chaussure) REFERENCES chaussure (id_chaussure)
-);
-
-CREATE TABLE IF NOT EXISTS panier (
-    id_panier INT AUTO_INCREMENT
-    ,date_ajout DATE
-    ,id_user INT
-    ,id_chaussure INT
-    ,prix_unit NUMERIC(6,2)
-    ,quantite INT
-    ,PRIMARY KEY (id_panier)
-    ,CONSTRAINT fk_commande_user1 FOREIGN KEY (id_user) REFERENCES user (id)
-    ,CONSTRAINT fk_commande_chaussure1 FOREIGN KEY (id_chaussure) REFERENCES chaussure (id_chaussure)
-);
