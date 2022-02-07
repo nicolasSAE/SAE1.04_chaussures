@@ -1,0 +1,50 @@
+BA SIDI 
+
+
+@auth_security.route('/signup')
+def auth_signup():
+    return render_template('auth/signup.html')
+
+@auth_security.route('/signup', methods=['POST'])
+def auth_signup_post():
+    mycursor = get_db().cursor()
+    email = request.form.get('email')
+    username = request.form.get('username')
+    password = request.form.get('password')
+    tuple_select = (username, email)
+    sql = '''SELECT * FROM user WHERE username=%s OR email=%s'''
+    retour = mycursor.execute(sql, tuple_select)
+    user = mycursor.fetchone()
+    if user:
+        flash(u'votre adresse <strong>Email</strong> ou  votre <strong>Username</strong> (login) existe déjà')
+        return redirect('/signup')
+
+    # ajouter un nouveau user
+    password = generate_password_hash(password, method='sha256')
+    mycursor.execute("INSERT  INTO  user ( username , email , password, role ,est_actif )  VALUES (%s,%s,%s,%s,%s);" ,(username ,email ,password, 'role_client',1))
+    mycursor.execute("SELECT last_insert_id() AS last_insert_id;")
+    info_last_id = mycursor.fetchone()
+    user_id = info_last_id['last_insert_id']
+    print('last_insert_id', user_id)
+    get_db().commit()
+    session.pop('username', None)
+    session.pop('role', None)
+    session.pop('user_id', None)
+    session['username'] = username
+    session['role'] = 'ROLE_client'
+    session['user_id'] = user_id
+    return redirect('/client/article/show')
+    #return redirect(url_for('client_index'))
+
+
+@auth_security.route('/logout')
+def auth_logout():
+    session.pop('username', None)
+    session.pop('role', None)
+    session.pop('user_id', None)
+    return redirect('/')
+    #return redirect(url_for('main_index'))
+
+@auth_security.route('/forget-password', methods=['GET'])
+def forget_password():
+    return render_template('auth/forget_password.html')
