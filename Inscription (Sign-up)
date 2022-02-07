@@ -21,7 +21,7 @@ def auth_signup_post():
 
     # ajouter un nouveau user
     password = generate_password_hash(password, method='sha256')
-    mycursor.execute("INSERT  INTO  user ( username , email , password, role ,est_actif )  VALUES (%s,%s,%s,%s,%s);" ,(username ,email ,password, 'role_client',1))
+    mycursor.execute("INSERT  INTO  user ( username , email , password, role ,est_actif )  VALUES (%s,%s,%s,%s,%s);" ,(username ,email ,password, 'ROLE_client',1))
     mycursor.execute("SELECT last_insert_id() AS last_insert_id;")
     info_last_id = mycursor.fetchone()
     user_id = info_last_id['last_insert_id']
