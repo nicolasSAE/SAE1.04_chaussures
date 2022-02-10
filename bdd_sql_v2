@@ -7,12 +7,12 @@ DROP TABLE IF EXISTS user;
 
 CREATE TABLE IF NOT EXISTS user (
     id INT AUTO_INCREMENT
+    ,email VARCHAR(50)
     ,username VARCHAR(25)
     ,password VARCHAR(100)
     ,role VARCHAR(25)
     ,est_actif VARCHAR(20)
     ,pseudo VARCHAR(25)
-    ,email VARCHAR(50)
     ,PRIMARY KEY (id)
 );
 
@@ -37,7 +37,8 @@ CREATE TABLE IF NOT EXISTS chaussure (
 );
 
 INSERT INTO chaussure(id_chaussure, libelle_chaussure, type_chaussure, pointure, fournisseur, marque, couleur, prix) VALUES
-(NULL,'chaussures de marche','DURAMO',40,'astreyee','adidas','noir',40);
+(NULL,'chaussures de marche','DURAMO',40,'astreyee','Adidas','noir',40),
+(NULL,'chaussures de sport','AIRMAX',42,'modèle 90','Nike','noir',40);
 
 
 
