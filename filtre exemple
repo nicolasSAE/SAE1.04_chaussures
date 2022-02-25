@@ -11,3 +11,29 @@ def filtre_utilisateur():
     Utilisateur = mycursor.fetchall()
 
     return render_template('location/show_location.html',  Location=Location, Utilisateur=Utilisateur)
+    
+    @app.route('/location/filtre/Date',  methods=['post'])
+def filtre_date():
+    Date_min = request.form.get('Date_min', '')
+    Date_max = request.form.get('Date_max', '')
+    tuple_filtre = (Date_min, Date_max)
+    print(Date_min, Date_max)
+    sql = '''SELECT Location.*, Utilisateur.Nom_Utilisateur FROM Location inner join Utilisateur on Utilisateur.id_Utilisateur = Location.id_Utilisateur WHERE Location.Date_debut > %s and Location.Date_rendu_prevue < %s'''
+    mycursor.execute(sql, tuple_filtre)
+    Location = mycursor.fetchall()
+    sql = "SELECT * FROM Utilisateur"
+    mycursor.execute(sql)
+    Utilisateur = mycursor.fetchall()
+
+    return render_template('location/show_location.html',  Location=Location, Utilisateur=Utilisateur)
+
+@app.route('/location/filtre/non_rendu',  methods=['get'])
+def filtre_non_rendu():
+    sql = '''SELECT Location.*, Utilisateur.Nom_Utilisateur FROM Location inner join Utilisateur on Utilisateur.id_Utilisateur = Location.id_Utilisateur WHERE Date_rendu IS NULL;'''
+    mycursor.execute(sql)
+    Location = mycursor.fetchall()
+    sql = "SELECT * FROM Utilisateur"
+    mycursor.execute(sql)
+    Utilisateur = mycursor.fetchall()
+
+    return render_template('location/show_location.html',  Location=Location, Utilisateur=Utilisateur)
