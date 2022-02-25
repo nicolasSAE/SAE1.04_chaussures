@@ -1,0 +1,13 @@
+@app.route('/location/filtre/Utilisateur',  methods=['post'])
+def filtre_utilisateur():
+    id_Utilisateur = request.form.get('id_Utilisateur', '')
+    tuple_filtre = (id_Utilisateur, )
+    print(id_Utilisateur)
+    sql = '''SELECT Location.*, Utilisateur.Nom_Utilisateur FROM Location inner join Utilisateur on Utilisateur.id_Utilisateur = Location.id_Utilisateur WHERE Location.id_Utilisateur = %s;'''
+    mycursor.execute(sql, tuple_filtre)
+    Location = mycursor.fetchall()
+    sql = "SELECT * FROM Utilisateur"
+    mycursor.execute(sql)
+    Utilisateur = mycursor.fetchall()
+
+    return render_template('location/show_location.html',  Location=Location, Utilisateur=Utilisateur)
