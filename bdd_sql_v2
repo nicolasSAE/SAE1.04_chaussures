@@ -24,7 +24,7 @@ INSERT INTO user  (id, email, username, password, role,  est_actif) VALUES
 (NULL, 'client2@client2.fr', 'client2', 'sha256$ayiON3nJITfetaS8$0e039802d6fac2222e264f5a1e2b94b347501d040d71cfa4264cad6067cf5cf3', 'ROLE_client',1);
 
 CREATE TABLE IF NOT EXISTS type_chaussure (
-    id_type INT AUTO_INCREMENT
+    id_type_chaussure INT AUTO_INCREMENT
     ,libelle_type VARCHAR(25)
     ,PRIMARY KEY(id_type)
 );
@@ -43,55 +43,57 @@ CREATE TABLE IF NOT EXISTS chaussure (
     ,marque VARCHAR(25)
     ,couleur VARCHAR(25)
     ,prix NUMERIC(6,2)
+    ,image VARCHAR(255)
+    ,stock INT
     ,PRIMARY KEY (id_chaussure)
     ,CONSTRAINT fk_type FOREIGN KEY (type_chaussure) REFERENCES type_chaussure (id_type)
 );
 
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(1,'DURAMO',40,'astreyee','adidas','noir',40),
-(1,'DURAMO',38,'astreyee','adidas','noir',40),
-(1,'DURAMO',45,'astreyee','adidas','noir',40);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(1,'HW 100',45,'stockX','Kalenji','rouge',60),
-(1,'HW 100',44,'stockX','Kalenji','rouge',60);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(1,'TRAIL RUNNING',42.5,'astreyee','ASICS','blanc',35),
-(1,'TRAIL RUNNING',44.5,'astreyee','ASICS','blanc',35),
-(1,'TRAIL RUNNING',43,'astreyee','ASICS','blanc',35);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(1,'DURAMO',40,'astreyee','adidas','noir',40,10,'nike1.jpg'),
+(1,'DURAMO',38,'astreyee','adidas','noir',40,10,'nike2.jpg'),
+(1,'DURAMO',45,'astreyee','adidas','noir',40,10,'nike3.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(1,'HW 100',45,'stockX','Kalenji','rouge',60,10,'nike4.jpg'),
+(1,'HW 100',44,'stockX','Kalenji','rouge',60,10,'nike5.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(1,'TRAIL RUNNING',42.5,'astreyee','ASICS','blanc',35,10,'nike6.jpg'),
+(1,'TRAIL RUNNING',44.5,'astreyee','ASICS','blanc',35,10,'nike1.jpg'),
+(1,'TRAIL RUNNING',43,'astreyee','ASICS','blanc',35,10,'nike2.jpg');
 
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(2,'Derbies Remake',41,'stockX','AZZARO','marron',100),
-(2,'Derbies Remake',42,'stockX','AZZARO','marron',100),
-(2,'Derbies Remake',38,'stockX','AZZARO','marron',100),
-(2,'Derbies Remake',44,'stockX','AZZARO','marron',100);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(2,'Derbies cuir',37,'astreyee','SANTONI','noir',250),
-(2,'Derbies cuir',38,'astreyee','SANTONI','noir',250),
-(2,'Derbies cuir',41,'astreyee','SANTONI','noir',250);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(2,'Derbies cuir',39,'astreyee','SCHMOOVE','marron',60),
-(2,'Derbies cuir',42,'astreyee','SCHMOOVE','marron',60);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(2,'Derbies cuir Eki',39,'astreyee','CAMPERLAB','rouge',55),
-(2,'Derbies cuir Eki',40,'astreyee','CAMPERLAB','rouge',55),
-(2,'Derbies cuir Eki',42,'astreyee','CAMPERLAB','rouge',55);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(2,'Derbies Remake',41,'stockX','AZZARO','marron',100,10,'nike3.jpg'),
+(2,'Derbies Remake',42,'stockX','AZZARO','marron',100,10,'nike4.jpg'),
+(2,'Derbies Remake',38,'stockX','AZZARO','marron',100,10,'nike5.jpg'),
+(2,'Derbies Remake',44,'stockX','AZZARO','marron',100,10);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(2,'Derbies cuir',37,'astreyee','SANTONI','noir',250,10,'nike6.jpg'),
+(2,'Derbies cuir',38,'astreyee','SANTONI','noir',250,10,'nike1.jpg'),
+(2,'Derbies cuir',41,'astreyee','SANTONI','noir',250,10,'nike2.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(2,'Derbies cuir',39,'astreyee','SCHMOOVE','marron',60,10,'nike3.jpg'),
+(2,'Derbies cuir',42,'astreyee','SCHMOOVE','marron',60,10,'nike4.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(2,'Derbies cuir Eki',39,'astreyee','CAMPERLAB','rouge',55,10,'nike5.jpg'),
+(2,'Derbies cuir Eki',40,'astreyee','CAMPERLAB','rouge',55,10,'nike6.jpg'),
+(2,'Derbies cuir Eki',42,'astreyee','CAMPERLAB','rouge',55,10,'nike1.jpg');
 
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(3,'Air Max 90',42,'astreyee','NIKE','noir',120),
-(3,'Air Max 90',43,'astreyee','NIKE','noir',120);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(3,'Air Huarache',42,'astreyee','NIKE','noir',130),
-(3,'Air Huarache',41,'astreyee','NIKE','noir',130),
-(3,'Air Huarache',38,'astreyee','NIKE','noir',130);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(3,'Jordan 11 Retro',38,'astreyee','JORDAN','gris',260),
-(3,'Jordan 11 Retro',40,'astreyee','JORDAN','gris',260),
-(3,'Jordan 11 Retro',43,'astreyee','JORDAN','gris',260);
-INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix) VALUES
-(3,'Jordan 1 Retro High Bred',39,'astreyee','JORDAN','rouge',510),
-(3,'Jordan 1 Retro High Bred',40,'astreyee','JORDAN','rouge',510),
-(3,'Jordan 1 Retro High Bred',41,'astreyee','JORDAN','rouge',510),
-(3,'Jordan 1 Retro High Bred',42,'astreyee','JORDAN','rouge',510);
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(3,'Air Max 90',42,'astreyee','NIKE','noir',120,10,'nike2.jpg'),
+(3,'Air Max 90',43,'astreyee','NIKE','noir',120,10,'nike3.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(3,'Air Huarache',42,'astreyee','NIKE','noir',130,10,'nike4.jpg'),
+(3,'Air Huarache',41,'astreyee','NIKE','noir',130,10,'nike5.jpg'),
+(3,'Air Huarache',38,'astreyee','NIKE','noir',130,10,'nike6.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(3,'Jordan 11 Retro',38,'astreyee','JORDAN','gris',260,10,'nike1.jpg'),
+(3,'Jordan 11 Retro',40,'astreyee','JORDAN','gris',260,10,'nike2.jpg'),
+(3,'Jordan 11 Retro',43,'astreyee','JORDAN','gris',260,10,'nike3.jpg');
+INSERT INTO chaussure (type_chaussure,libelle_chaussure,pointure,fournisseur,marque,couleur,prix,stock,image) VALUES
+(3,'Jordan 1 Retro High Bred',39,'astreyee','JORDAN','rouge',510,10,'nike4.jpg'),
+(3,'Jordan 1 Retro High Bred',40,'astreyee','JORDAN','rouge',510,10,'nike5.jpg'),
+(3,'Jordan 1 Retro High Bred',41,'astreyee','JORDAN','rouge',510,10,'nike6.jpg'),
+(3,'Jordan 1 Retro High Bred',42,'astreyee','JORDAN','rouge',510,10,'nike1.jpg');
 
 
 CREATE TABLE IF NOT EXISTS etat (
@@ -100,14 +102,21 @@ CREATE TABLE IF NOT EXISTS etat (
     ,PRIMARY KEY (id_etat)
 );
 
+INSERT INTO etat (  libelle  )
+VALUES ('expédié'),
+      ('validé'),
+      ('confirmé');
+
 CREATE TABLE IF NOT EXISTS commande (
     id_commande INT AUTO_INCREMENT
     ,date_achat DATE
+    ,nbr_articles int
+    ,prix_total numeric
     ,id_user INT
     ,id_etat INT
     ,PRIMARY KEY (id_commande)
-    ,CONSTRAINT fk_commande_user FOREIGN KEY (id_user) REFERENCES user (id)
-    ,CONSTRAINT fk_commande_etat FOREIGN KEY (id_etat) REFERENCES etat (id_etat)
+    ,CONSTRAINT fk_commande_user FOREIGN KEY (id_user) REFERENCES user(id)
+    , FOREIGN KEY(`id_etat`) REFERENCES `etat`(`id_etat`)
 );
 
 CREATE TABLE IF NOT EXISTS ligne_commande (
@@ -126,7 +135,7 @@ CREATE TABLE IF NOT EXISTS panier (
     ,date_ajout DATE
     ,id_user INT
     ,id_chaussure INT
-    ,prix_unit NUMERIC(6,2)
+    ,prix_unit INT
     ,quantite INT
     ,PRIMARY KEY (id_panier)
     ,CONSTRAINT fk_commande_user1 FOREIGN KEY (id_user) REFERENCES user (id)
